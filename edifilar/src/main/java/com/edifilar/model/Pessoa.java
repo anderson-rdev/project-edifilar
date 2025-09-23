@@ -2,52 +2,39 @@ package com.edifilar.model;
 
 import com.edifilar.enums.TipoSanguineo;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
-public class Pessoa {
+/**
+ * Representa uma pessoa no sistema.
+ */
+public class Pessoa extends Dominio {
 
-    private Long id;
     private String nome;
     private List<Enderecos> enderecos;
     private TipoSanguineo tipoSanguineo;
 
-    // CONSTRUTOR PADRÃO (OBRIGATÓRIO para Spring/JPA)
+    // Construtor padrão
     public Pessoa() {
-        this.enderecos = new ArrayList<>(); // Inicializa a lista para evitar NullPointerException
+        super();
+        this.enderecos = new ArrayList<>();
     }
 
     // Construtor com id e nome
     public Pessoa(Long id, String nome) {
-        this(); // Chama o construtor padrão
-        this.id = id;
+        super(id);
         this.nome = nome;
+        this.enderecos = new ArrayList<>();
     }
 
-    // Construtor completo (se necessário)
+    // Construtor completo
     public Pessoa(Long id, String nome, List<Enderecos> enderecos) {
-        this.id = id;
+        super(id);
         this.nome = nome;
         this.enderecos = enderecos != null ? enderecos : new ArrayList<>();
     }
 
-    // Getters e Setters
-
-    public TipoSanguineo getTipoSanguineo() {
-        return tipoSanguineo;
-    }
-
-    public void setTipoSanguineo(TipoSanguineo tipoSanguineo) {
-        this.tipoSanguineo = tipoSanguineo;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    // Getters e setters
 
     public String getNome() {
         return nome;
@@ -65,6 +52,14 @@ public class Pessoa {
         this.enderecos = enderecos != null ? enderecos : new ArrayList<>();
     }
 
+    public TipoSanguineo getTipoSanguineo() {
+        return tipoSanguineo;
+    }
+
+    public void setTipoSanguineo(TipoSanguineo tipoSanguineo) {
+        this.tipoSanguineo = tipoSanguineo;
+    }
+
     // Método utilitário para adicionar endereço
     public void addEndereco(Enderecos endereco) {
         if (this.enderecos == null) {
@@ -76,9 +71,10 @@ public class Pessoa {
     @Override
     public String toString() {
         return "Pessoa{" +
-                "id=" + id +
+                "id=" + getId() +
                 ", nome='" + nome + '\'' +
                 ", enderecos=" + (enderecos != null ? enderecos.size() : 0) + " endereços" +
+                ", tipoSanguineo=" + tipoSanguineo +
                 '}';
     }
 }

@@ -1,18 +1,25 @@
 package com.edifilar.model;
 
-public class Dominio {
-    protected long id;
+/**
+ * Classe base simples para entidades com identificador.
+ */
+public abstract class Dominio {
 
-    public long getId() {
-        return id;
+    private Long id;
+
+    public Dominio() {
+        // Construtor padrão
     }
 
-    public void setId(long id) {
+    public Dominio(Long id) {
         this.id = id;
     }
 
-    // Construtor
-    public Dominio(long id) {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
         this.id = id;
     }
 }
